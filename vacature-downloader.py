@@ -11,6 +11,7 @@ def page_is_loaded(driver):
 def button_is_loaded(driver):
     return driver.find_element_by_id("form_save") != None
 
+#Set up file downloader
 fp = webdriver.FirefoxProfile()
 fp.set_preference("browser.download.folderList",2)
 fp.set_preference("browser.download.manager.showWhenStarting",False)
@@ -19,6 +20,7 @@ fp.set_preference("browser.helperApps.neverAsk.openFile", "application/pdf,appli
 fp.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/pdf,application/msword,application/xml,application/octet-stream");
 fp.set_preference("browser.helperApps.alwaysAsk.force", False);
 
+#Set up login as before
 driver = webdriver.Firefox(firefox_profile=fp)
 driver.set_window_size(1080,800)
 driver.get("http://www.nationalevacaturebank.nl/werkgever")
@@ -50,6 +52,7 @@ password_field.send_keys(Keys.RETURN)
 #soup = BeautifulSoup(html,"html5lib")
 #print soup
 
+#Obtain cv data, parse and write to csv. download cv file (usually word doc) and store name with profile data
 csvfile = open('vacature_profiles.csv', 'ab')
 writer = csv.writer(csvfile, delimiter = '|', quotechar = '"')
 with open('vacature_links.txt') as f:
