@@ -3,6 +3,7 @@ from selenium.webdriver.support import ui
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 
+#Begin login logic
 def page_is_loaded(driver):
     return driver.find_element_by_tag_name("body") != None
 def button_is_loaded(driver):
@@ -38,10 +39,12 @@ password_field.send_keys(Keys.RETURN)
 #html = driver.page_source
 #soup = BeautifulSoup(html,"html5lib")
 #print soup
+#end login logic
 
 txtfile = open('vacature_links.txt', 'ab')
 
-for i in range(15410, 17337):
+#Obtain search results. write all urls for search into txt file. adjust range based on total # of pages. this can be done dynamically later
+for i in range(0, 17337):
     url = "http://www.nationalevacaturebank.nl/werkgever/cv-zoeken/overzicht/wijzigingsdatum/uitgebreid/page/" + str(i) + "/query//distance/30/output/html/anonymous/anonymous-2-niet-anoniem/load_mode/results_page/items_per_page/50/ignore_ids"
     print "===Page===" + url
     wait = ui.WebDriverWait(driver, 10)
