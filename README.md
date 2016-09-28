@@ -4,15 +4,11 @@ Dependencies to Install:
 
 sudo apt-get install python-pip
 
-sudo apt-get install python-dev libmysqlclient-dev
-
 sudo apt-get install firefox
 
 sudo apt-get install xvfb
 
 Python Packages:
-
-sudo pip install MySQL-python
 
 sudo pip install bs4
 
