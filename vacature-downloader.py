@@ -91,6 +91,7 @@ with open('vacature_links.txt') as f:
         cv_file_name = ""
         skip_function = 0
         skip_employer = 0
+        skip_drivers_license = 0
         for profile in profile_data:
             tab1 = profile.find_all('div', {'id':'tab-1'})
             for tab1_data in tab1:
@@ -105,10 +106,23 @@ with open('vacature_links.txt') as f:
                          skip_employer = 1
                 if tab1_list_headings[3].get_text().strip().encode('ascii', 'ignore').decode('ascii')[0] == "C":
                      skip_employer = 1
+                if tab1_list_headings[4].get_text().strip().encode('ascii', 'ignore').decode('ascii')[0] == "G":
+                     skip_drivers_license = 1
                 tab1_list = tab1_data.findAllNext('dd')
                 candidate_number = tab1_list[0].get_text().strip().encode('ascii', 'ignore').decode('ascii')
                 revision_date = tab1_list[1].get_text().strip().encode('ascii', 'ignore').decode('ascii')
-                if skip_function == 1 and skip_employer == 1:
+                if skip_drivers_license == 1:
+                    career_level = tab1_list[2].get_text().strip().encode('ascii', 'ignore').decode('ascii')
+                    education_level = tab1_list[3].get_text().strip().encode('ascii', 'ignore').decode('ascii')
+                    desired_function = tab1_list[4].get_text().strip().encode('ascii', 'ignore').decode('ascii')
+                    desired_function_group = tab1_list[5].get_text().strip().encode('ascii', 'ignore').decode('ascii')
+                    desired_industry = tab1_list[6].get_text().strip().encode('ascii', 'ignore').decode('ascii')
+                    availability = tab1_list[7].get_text().strip().encode('ascii', 'ignore').decode('ascii')
+                    hours = tab1_list[8].get_text().strip().encode('ascii', 'ignore').decode('ascii')
+                    employment = tab1_list[9].get_text().strip().encode('ascii', 'ignore').decode('ascii')
+                    max_travel = tab1_list[10].get_text().strip().encode('ascii', 'ignore').decode('ascii')
+                    salary = tab1_list[11].get_text().strip().encode('ascii', 'ignore').decode('ascii')
+                elif skip_function == 1 and skip_employer == 1:
                     most_recent_function = ""
                     most_recent_employer = ""
                     career_level = tab1_list[2].get_text().strip().encode('ascii', 'ignore').decode('ascii')
@@ -120,7 +134,8 @@ with open('vacature_links.txt') as f:
                     availability = tab1_list[8].get_text().strip().encode('ascii', 'ignore').decode('ascii')
                     hours = tab1_list[9].get_text().strip().encode('ascii', 'ignore').decode('ascii')
                     employment = tab1_list[10].get_text().strip().encode('ascii', 'ignore').decode('ascii')
-                    max_travel = tab1_list[11].get_text().strip().encode('ascii', 'ignore').decode('ascii')                    salary = tab1_list[12].get_text().strip().encode('ascii', 'ignore').decode('ascii')
+                    max_travel = tab1_list[11].get_text().strip().encode('ascii', 'ignore').decode('ascii')
+                    salary = tab1_list[12].get_text().strip().encode('ascii', 'ignore').decode('ascii')
                 elif skip_employer == 1:
                     most_recent_function = tab1_list[2].get_text().strip().encode('ascii', 'ignore').decode('ascii')
                     most_recent_employer = ""
