@@ -17,4 +17,5 @@ sudo pip install selenium
 
 To run:
 xvfb-run python vacature-scraper.py
+
 xvfb-run python vacature-downloader.py
